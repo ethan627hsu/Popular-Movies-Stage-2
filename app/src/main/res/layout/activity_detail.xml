@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Using a ScrollView so we can fit all of the content into a nice scrolling page -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--We have a vertical LinearLayout to put the main information, description and other future
+    additions in a viewable, stylish list-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!--We are using a horizontal LinearLayout to separate the movie poster from the other small
+         text content-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!--We are using an ImageView to display the movie poster-->
+            <ImageView
+                android:id="@+id/iv_poster"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="16dp"/>
+                <!--We are making the width 0dp and the layout weight 1 to make the view
+                take up half of the user's screen-->
+                <!--We additionally add some padding to all elements so that it has some
+                distance between it and all of it's neighbors/borders-->
+
+            <!--We put all of the small text content inside of a  -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="16dp">
+                <!--We are making the width 0dp and the layout weight 1 to make the view
+                take up half of the user's screen-->
+                <!--We additionally add some padding to the imageview so that it has some
+                distance between it and all of it's neighbors/borders-->
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large" />
+                <!--We are using a TextView to display the date the movie was released, we use
+                the Material.Display1 to make it the largest TextView of the group-->
+
+                <TextView
+                    android:id="@+id/tv_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large" />
+                <!--We are using a TextView to display the average user rating of the movie, we use
+                the Material.Large to make it more of a subheader that conveys more information -->
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--We place the description TextView outside of the LinearLayout because we want to have it take up
+        the entire screen width-->
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+        <!--We are using a TextView to display the movie's description, we use
+            the Material.Medium to make it a smaller, more descriptive area-->
+    </LinearLayout>
+</ScrollView>

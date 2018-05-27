@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Declaring a menu so the user can switch between popular and top rated movies-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--An item for the popular movies-->
+    <item
+        android:id="@+id/item_popular"
+        android:title="Popular" />
+    <!--An item for the top rated movies-->
+    <item
+        android:id="@+id/item_top_rated"
+        android:title="Top Rated" />
+</menu>

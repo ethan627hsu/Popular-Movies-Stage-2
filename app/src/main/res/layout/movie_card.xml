@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--movie_card is a layout that contains the layout for a single movie icon-->
+<!--In our case, the movie icon just includes one picture, so we can just
+declare an ImageView with an id so we can get access to it later-->
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/movie_poster"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:scaleType="centerCrop">
+
+</ImageView>

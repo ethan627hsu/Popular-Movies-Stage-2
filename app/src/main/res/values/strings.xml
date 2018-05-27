@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Popular Movies, Stage 1</string>
+    <!--A string resource for holding an api key for the network request to theMovieDatabase-->
+    <string name="api_key"></string>
+</resources>
