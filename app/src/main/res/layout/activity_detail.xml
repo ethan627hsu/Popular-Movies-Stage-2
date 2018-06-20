@@ -2,12 +2,14 @@
 <!--Using a ScrollView so we can fit all of the content into a nice scrolling page -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/parent_scroll">
     <!--We have a vertical LinearLayout to put the main information, description and other future
     additions in a viewable, stylish list-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:descendantFocusability="blocksDescendants"
         android:orientation="vertical">
 
         <!--We are using a horizontal LinearLayout to separate the movie poster from the other small
@@ -32,7 +34,7 @@
             <!--We put all of the small text content inside of a  -->
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:padding="16dp">
@@ -57,6 +59,21 @@
                     android:textAppearance="@android:style/TextAppearance.Material.Large" />
                 <!--We are using a TextView to display the average user rating of the movie, we use
                 the Material.Large to make it more of a subheader that conveys more information -->
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:paddingBottom="16dp">
+                <ImageView
+                    android:layout_width="48dp"
+                    android:checked="false"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_star_border_black_24dp"
+                    android:id="@+id/iv_star"
+                    android:layout_gravity="center"/>
+
+                </FrameLayout>
             </LinearLayout>
 
         </LinearLayout>
@@ -71,5 +88,31 @@
             android:textAppearance="@android:style/TextAppearance.Material.Medium" />
         <!--We are using a TextView to display the movie's description, we use
             the Material.Medium to make it a smaller, more descriptive area-->
+
+        <!--Adding a header to put the trailer list into context-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trailers"
+            android:padding="16dp"
+            android:textAppearance="@android:style/TextAppearance.Material.Large"/>
+
+        <ListView
+            android:id="@+id/lv_trailers"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:scrollbars="none"/>
+        <Button
+            android:id="@+id/bn_reviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="16dp"
+            android:layout_margin="16dp"
+            android:textAppearance="@android:style/TextAppearance.Material.Button"
+            android:text="Movie Reviews"/>
+
     </LinearLayout>
 </ScrollView>

@@ -1,4 +1,4 @@
-package popularmoviesstage1.udacity.com.popularmoviesstage1;
+package popularmoviesstage2.udacity.com.popularmoviesstage2;
 
 import java.io.Serializable;
 
@@ -6,25 +6,32 @@ import java.io.Serializable;
 
 //Hiding compiler warnings so our function can pass as serializable
 @SuppressWarnings("serial")
-public class Movie implements Serializable{
+public class Movie implements Serializable {
 
     //Specifying the needed data as fields for the class
 
+    //The id of the movie so we can access more specific data
+    private String id;
     //The movie titles and movie synopsis are pure Strings
     private String movieTitle;
     private String plotSynopsis;
-
     //The release date is the returned date in its original String format
     private String releaseDate;
-
     //The movie poster contains the file name for the image that leads to the movie poster
     private String moviePoster;
-
     //The vote average is a decimal number 1-10 that determines how well users liked the movie
     private Double voteAverage;
 
     //A blank constructor so we can initialize a new instance of the Movie class
     public Movie() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     //Appropriate getters and setters to change and access all of the values of the data

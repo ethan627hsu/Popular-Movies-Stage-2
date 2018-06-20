@@ -1,4 +1,4 @@
-package popularmoviesstage1.udacity.com.popularmoviesstage1;
+package popularmoviesstage2.udacity.com.popularmoviesstage2;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -43,7 +43,7 @@ public class MovieAdapter extends BaseAdapter {
     }
 
     //Overriding the required method to get the data at a certain index, in our case,
-    //we can return an index of our Movie[], that is specified through the position param
+    //we can return an index of our Movie[], that is specified through the gridState param
     @Override
     public Object getItem(int position) {
         return movieData[position];
@@ -56,7 +56,7 @@ public class MovieAdapter extends BaseAdapter {
     }
 
     //The getView method is used by the GridView to get the current view that contains the data
-    //at a certain position
+    //at a certain gridState
     //We use convertView as the base for adding and inflating views for the card
     //We use parent to be the root layout for the inflation
     @Override

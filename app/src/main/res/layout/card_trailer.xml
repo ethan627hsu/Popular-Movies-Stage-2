@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--card_trailer describes the card layout for one specific card-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="64dp"
+    android:padding="8dp"
+    android:gravity="center">
+    <!--Using a horizontal LinearLayout to display the data in a slim fashion-->
+
+    <!--Using an ImageView to display a play icon to signify that you can play the trailer-->
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/play_black_24dp" />
+
+    <!--The main title TextView that fills the available space with layout_weight -->
+    <TextView
+        android:id="@+id/tv_trailer_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:lines="1"
+        android:textStyle="bold"
+        android:text="Hello!"
+        android:layout_marginLeft="16dp"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"/>
+</LinearLayout>

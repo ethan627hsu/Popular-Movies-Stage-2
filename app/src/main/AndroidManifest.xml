@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="popularmoviesstage1.udacity.com.popularmoviesstage1">
-    <!--Using the INTERNET to make network requests to the movie database-->
+    package="popularmoviesstage2.udacity.com.popularmoviesstage2">
+
+    <!-- Using the INTERNET to make network requests to the movie database -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -11,6 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <provider
+            android:name=".FavoritesContentProvider"
+            android:authorities="popularmoviesstage2.udacity.com.popularmoviesstage2"
+            android:exported="false"/>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,10 +25,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--Adding DetailActivity to the manfiest as a parent of the MainActivity-->
+        <!-- Adding DetailActivity to the manifest as a parent of the MainActivity -->
         <activity
             android:name=".DetailActivity"
-            android:parentActivityName="popularmoviesstage1.udacity.com.popularmoviesstage1.MainActivity"/>
+            android:launchMode="singleInstance"
+            android:parentActivityName=".MainActivity" />
+        <!--
+        Declaring launchMode to be singleInstance so the parent activity doesn't fetch the data every
+        time the DetailActivity is closed
+        -->
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="popularmoviesstage2.udacity.com.popularmoviesstage2.MainActivity" />
+
+        <activity android:name=".ReviewActivity"
+            android:launchMode="singleInstance"
+            android:parentActivityName=".DetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="popularmoviesstage2.udacity.com.popularmoviesstage2.DetailActivity" />
+        </activity>
     </application>
 
 </manifest>

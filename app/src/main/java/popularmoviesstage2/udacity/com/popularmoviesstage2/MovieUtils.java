@@ -1,4 +1,4 @@
-package popularmoviesstage1.udacity.com.popularmoviesstage1;
+package popularmoviesstage2.udacity.com.popularmoviesstage2;
 
 import android.content.Context;
 import android.net.Uri;
@@ -24,6 +24,7 @@ public class MovieUtils {
     private static final String RESULTS = "results";
 
     //Adding the keys to access the specific movie data in their movie object
+    private static final String ID = "id";
     private static final String TITLE = "title";
     private static final String RELEASE_DATE = "release_date";
     private static final String POSTER = "poster_path";
@@ -133,6 +134,7 @@ public class MovieUtils {
             Movie buildMovie = new Movie();
 
             //Add specified data to it
+            buildMovie.setId(movieJson.getString(ID));
             buildMovie.setMovieTitle(movieJson.getString(TITLE));
             buildMovie.setReleaseDate(movieJson.getString(RELEASE_DATE));
             buildMovie.setMoviePoster(movieJson.getString(POSTER));
@@ -145,5 +147,114 @@ public class MovieUtils {
         //At the end, return the data in the form of a Movie array
         return movieArrayList.toArray(new Movie[0]);
     }
+
+    private static final String VIDEO_BASE_URL = "https://api.themoviedb.org/3/movie/";
+    private static final String VIDEOS = "videos";
+
+    public static void getTrailers(Context context, String movieId,
+                                   Response.Listener<JSONObject> networkResponse,
+                                   Response.ErrorListener errorResponse) {
+
+        Uri.Builder buildingUri = Uri.parse(VIDEO_BASE_URL).buildUpon();
+        buildingUri.appendPath(movieId);
+        buildingUri.appendPath(VIDEOS);
+        buildingUri.appendQueryParameter(PARAM_API_KEY, context.getString(R.string.api_key));
+
+        URL requestURL = null;
+        try {
+            //Having requestURL equal the value of our built Uri that includes the
+            // API_KEY parameter and the base path
+            requestURL = new URL(buildingUri.build().toString());
+        } catch (MalformedURLException e) {
+            //Handling the error by printing out the stacktrace that shows where the error
+            //came from and why it happened
+            e.printStackTrace();
+        }
+
+        //Getting the queue that does the requests on the background thread
+        RequestQueue queue = Volley.newRequestQueue(context);
+
+        // Requesting a string response from the request
+        JsonObjectRequest movieRequest = new JsonObjectRequest(Request.Method.GET, requestURL.toString(),
+                null,
+                //Listening for the response so we can take action with the json response or the error
+                networkResponse, errorResponse);
+
+        // Adding the request to the background thread.
+        queue.add(movieRequest);
+    }
+
+    private static final String TRAILER_RESULTS = "results";
+    private static final String TRAILER_KEY = "key";
+    private static final String TRAILER_NAME = "name";
+
+    public static ArrayList<Trailer> parseTrailerJson(JSONObject json) throws JSONException {
+        JSONArray trailerData = json.getJSONArray(TRAILER_RESULTS);
+
+        ArrayList<Trailer> trailers = new ArrayList<>();
+        for (int i = 0; i < trailerData.length(); i++) {
+            Trailer buildTrailer = new Trailer();
+            JSONObject trailerIndex = trailerData.getJSONObject(i);
+            buildTrailer.setId(trailerIndex.getString(TRAILER_KEY));
+            buildTrailer.setTitle(trailerIndex.getString(TRAILER_NAME));
+            trailers.add(buildTrailer);
+        }
+        return trailers;
+    }
+
+    private static final String REVIEW_BASE_URL = "https://api.themoviedb.org/3/movie/";
+    private static final String REVIEWS = "reviews";
+
+    public static void getReviews(Context context, String movieId,
+                                  Response.Listener<JSONObject> networkResponse,
+                                  Response.ErrorListener errorResponse) {
+
+        Uri.Builder buildingUri = Uri.parse(REVIEW_BASE_URL).buildUpon();
+        buildingUri.appendPath(movieId);
+        buildingUri.appendPath(REVIEWS);
+        buildingUri.appendQueryParameter(PARAM_API_KEY, context.getString(R.string.api_key));
+
+        URL requestURL = null;
+        try {
+            //Having requestURL equal the value of our built Uri that includes the
+            // API_KEY parameter and the base path
+            requestURL = new URL(buildingUri.build().toString());
+        } catch (MalformedURLException e) {
+            //Handling the error by printing out the stacktrace that shows where the error
+            //came from and why it happened
+            e.printStackTrace();
+        }
+
+        //Getting the queue that does the requests on the background thread
+        RequestQueue queue = Volley.newRequestQueue(context);
+
+        // Requesting a string response from the request
+        JsonObjectRequest movieRequest = new JsonObjectRequest(Request.Method.GET, requestURL.toString(),
+                null,
+                //Listening for the response so we can take action with the json response or the error
+                networkResponse, errorResponse);
+
+        // Adding the request to the background thread.
+        queue.add(movieRequest);
+    }
+
+    private static final String REVIEWS_RESULTS = "results";
+    private static final String REVIEW_AUTHOR = "author";
+    private static final String REVIEW_CONTENT = "content";
+
+    public static ArrayList<Review> parseReviewJson(JSONObject json) throws JSONException {
+        JSONArray reviewData = json.getJSONArray(REVIEWS_RESULTS);
+
+        ArrayList<Review> reviews = new ArrayList<>();
+        for (int i = 0; i < reviewData.length(); i++) {
+            Review buildReview = new Review();
+            JSONObject reviewIndex = reviewData.getJSONObject(i);
+            buildReview.setAuthor(reviewIndex.getString(REVIEW_AUTHOR));
+            buildReview.setContent(reviewIndex.getString(REVIEW_CONTENT));
+            reviews.add(buildReview);
+        }
+        return reviews;
+    }
+
 
 }
